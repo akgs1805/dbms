@@ -1,0 +1,860 @@
+#include <iostream>
+#include <windows.h>
+#include <mysql.h>
+#include <sstream>
+#include <iomanip>
+#include <stdio.h>
+
+using namespace std;
+class wholesale
+{
+	public:  int entry();
+             int admin();
+             int manager();
+             void customer();
+             void funtar();
+             void funleast();
+			void transaction();
+			void worker();
+			void company();
+			void stock();
+			void newtransaction();
+			void deltransaction();
+			void uptransaction();
+			void uptrans();
+			void balance();
+			void workerfun();
+			void companyfun();
+			void hightrans();
+			void newcustomer();
+			void delcustomer();
+			void newworker();
+			void delworker();
+			void newcompany();
+			void delcompany();
+			void newstock();
+			void upstock();
+
+};
+
+int wholesale :: entry()
+{
+	int entry;
+		cout<<"*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&*&*&**&*&*&**&*&*&*&*&*&*&*&"<<endl;
+		cout<<"\t\t\tWELCOME TO SURYANARAYANA AGENCIES"<<endl;
+		cout<<"\t\t\tpress 1 to continue as a Admin"<<endl;
+		cout<<"\t\t\tpress 2 to continue as a Manager"<<endl;
+		cout<<"\t\t\tpress 3 to exit"<<endl;
+		cout<<"*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&*&*&**&*&*&**&*&*&*&*&*&*&*&"<<endl<<endl;
+		cout<<"Enter the CHOICE: ";
+		cin>>entry;
+    	switch(entry)
+    	{
+    		case 1: admin();
+    				break;
+    		case 2: manager();
+    				break;
+    		case 3: exit(0);
+    				break;
+    		default: cout<< "please enter the correct choice";
+    				break;
+		}
+}
+
+int wholesale:: admin()
+{
+	int ch;
+    cout<<endl<<endl;
+    cout<<"*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&*&*&**&*&*&**&*&*&*&*&*&*&*&"<<endl;
+	cout<< "welcome to admin"<<endl;
+	cout<<" press 1 to enter the for customer details"<<endl;
+	cout<<" press 2 to enter the transactions details"<<endl;
+	cout<<" press 3 to enter the for worker   details"<<endl;
+	cout<<" press 4 to enter the for company  details"<<endl;
+	cout<<" press 5 to enter the for stock details   "<<endl;
+	cout<<" press 6 to exit"<<endl;
+	cout<<"*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&*&*&**&*&*&**&*&*&*&*&*&*&*&"<<endl;
+	cout<<" Enter the Choice: ";
+	cin>>ch;
+	cout<<endl<<endl;
+	switch(ch)
+        {
+			case 1:customer();
+						break;
+			case 2:transaction();
+						break;
+			case 3:worker();
+						break;
+			case 4:company();
+						break;
+			case 5:stock();
+						break;
+            		case 6:exit(0);
+						break;
+			default : cout<<"enter correct choice";
+						break;
+        }
+
+}
+
+int wholesale:: manager()
+{
+	int ch;
+    cout<<endl<<endl;
+    cout<<"*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&*&*&**&*&*&**&*&*&*&*&*&*&*&"<<endl;
+	cout<< "welcome to Manager"<<endl;
+	cout<<" press 1 to Update transaction details"<<endl;
+	cout<<" press 2 to retrieve all the customer names with their balances"<<endl;
+	cout<<" press 3 to retrieve worker details functions"<<endl;
+	cout<<" press 4 to retrieve company record functions"<<endl;
+	cout<<" press 5 to get highest transaction by the customer with their details "<<endl;
+	cout<<" press 6 to exit"<<endl;
+	cout<<"*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&*&*&**&*&*&**&*&*&*&*&*&*&*&"<<endl;
+	cout<<" Enter the Choice: ";
+	cin>>ch;
+	cout<<endl<<endl;
+	switch(ch)
+        {
+			case 1:uptransaction();
+						break;
+			case 2:balance();
+						break;
+			case 3:workerfun();
+						break;
+			case 4:companyfun();
+						break;
+			case 5:hightrans();
+						break;
+            		case 6:exit(0);
+						break;
+			default : cout<<"enter correct choice";
+						break;
+        }
+
+}
+
+void wholesale :: customer()
+{
+	int ch;
+    cout<<endl<<endl;
+	cout<< "Customer Table"<<endl;
+	cout<<" press 1 to enter the new customer details"<<endl;
+	cout<<" press 2 to delete the customer details"<<endl;
+	cout<<" press 3 to exit back"<<endl;
+	cout<<" Enter the Choice: ";
+	cin>>ch;
+	cout<<endl<<endl;
+	switch(ch)
+        {
+			case 1:newcustomer();
+						break;
+			case 2:delcustomer();
+						break;
+			case 3:goto loop;
+                    loop: admin();
+						break;
+			default : cout<<"enter correct choice";
+						break;
+	}
+}
+
+void wholesale :: worker()
+{
+	int ch;
+    cout<<endl<<endl;
+	cout<< "Customer Table"<<endl;
+	cout<<" press 1 to enter the new worker details"<<endl;
+	cout<<" press 2 to delete the worker details"<<endl;
+	cout<<" press 3 to exit back"<<endl;
+	cout<<" Enter the Choice: ";
+	cin>>ch;
+	cout<<endl<<endl;
+	switch(ch)
+        {
+			case 1:newworker();
+						break;
+			case 2:delworker();
+						break;
+			case 3: goto loop;
+                    loop: admin();
+						break;
+			default : cout<<"enter correct choice";
+						break;
+	}
+}
+
+void  wholesale :: company()
+{
+	int ch;
+    cout<<endl<<endl;
+	cout<< "Customer Table"<<endl;
+	cout<<" press 1 to enter the new company details"<<endl;
+	cout<<" press 2 to delete the company details"<<endl;
+	cout<<" press 3 to exit back"<<endl;
+	cout<<" Enter the Choice: ";
+	cin>>ch;
+	cout<<endl<<endl;
+	switch(ch)
+        {
+			case 1:newcompany();
+						break;
+			case 2:delcompany();
+						break;
+			case 3: goto loop;
+                    loop: admin();
+						break;
+			default : cout<<"enter correct choice";
+						break;
+	}
+}
+
+void  wholesale :: stock()
+{
+	int ch;
+    cout<<endl<<endl;
+	cout<< "Customer Table"<<endl;
+	cout<<" press 1 to enter the new company stock details"<<endl;
+	cout<<" press 2 to update the company stock details"<<endl;
+	cout<<" press 3 to exit back"<<endl;
+	cout<<" Enter the Choice: ";
+	cin>>ch;
+	cout<<endl<<endl;
+	switch(ch)
+        {
+			case 1:newstock();
+						break;
+			case 2:upstock();
+						break;
+			case 3: goto loop;
+                    loop: admin();
+						break;
+			default : cout<<"enter correct choice";
+						break;
+	}
+}
+
+void wholesale :: newcustomer()
+{
+    string dummy;
+    MYSQL* conn;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = 0;
+        string name,city;
+        int id;
+        int phone;
+        cout << "Enter Customer ID : ";
+        cin >> id;
+
+        cout << "Enter Customer Name : ";
+        cin >> name;
+
+        cout << "Enter Customer City : ";
+        cin >> city;
+
+        cout << "Enter Customer PhoneNumber : ";
+        cin >> phone;
+
+        stringstream ss;
+        ss << "INSERT INTO customer(cid, cname, ccity, phone) VALUES('" << id << "','" << name << "','"<< city <<"','"<< phone <<"')";
+
+        string query = ss.str();
+        const char* q = query.c_str();
+        qstate = mysql_query(conn, q);
+        if(qstate == 0){
+            cout <<endl<< "Record Inserted..." << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }else{
+            cout << "Insert Error" << mysql_error(conn) << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }
+    }else{
+        cout << "Connection Error" << endl;
+        cout << "Press B to go back";
+        cin >> dummy;
+    }
+
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: newtransaction()
+{
+    string dummy;
+    MYSQL* conn;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = 0;
+        string name,city;
+        int cid,billno;
+        double credit,debit;
+        cout << "Enter Customer ID : ";
+        cin >> cid;
+
+        cout << "Enter Bill NUmber : ";
+        cin >> billno;
+
+        cout << "Enter Credit Amount : ";
+        cin >> credit;
+
+        cout << "Enter Debit Amount : ";
+        cin >> debit;
+
+
+        stringstream ss;
+        ss << "INSERT INTO customer(cid,billno, credit, debit) VALUES('" << cid << "','" << billno << "','" << credit << "','"<< debit <<"')";
+
+        string query = ss.str();
+        const char* q = query.c_str();
+        qstate = mysql_query(conn, q);
+        if(qstate == 0){
+            cout <<endl<< "Record Inserted..." << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }else{
+            cout << "Insert Error" << mysql_error(conn) << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }
+    }else{
+        cout << "Connection Error" << endl;
+        cout << "Press B to go back";
+        cin >> dummy;
+    }
+
+    system("pause");
+    system("cls");
+}
+
+void  wholesale :: newworker()
+{
+    string dummy;
+    MYSQL* conn;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = 0;
+        string wname;
+        int wid,age;
+        double salary;
+        cout << "Enter Worker ID : ";
+        cin >> wid;
+
+        cout << "Enter Worker Name : ";
+        cin >> wname;
+
+        cout << "Enter Salary : ";
+        cin >> salary;
+
+        cout << "Enter Age : ";
+        cin >> age;
+
+        stringstream ss;
+        ss << "INSERT INTO customer(wid, wname, salary, age) VALUES('" << wid << "','" << wname << "','"<< salary <<"','"<< age <<"')";
+
+        string query = ss.str();
+        const char* q = query.c_str();
+        qstate = mysql_query(conn, q);
+        if(qstate == 0){
+            cout <<endl<< "Record Inserted..." << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }else{
+            cout << "Insert Error" << mysql_error(conn) << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }
+    }else{
+        cout << "Connection Error" << endl;
+        cout << "Press B to go back";
+        cin >> dummy;
+    }
+
+    system("pause");
+    system("cls");
+}
+
+void  wholesale :: newcompany()
+{
+    string dummy;
+    MYSQL* conn;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = 0;
+        string compname,compcity;
+        int compid;
+        int phone;
+        cout << "Enter Company ID : ";
+        cin >> compid;
+
+        cout << "Enter Company Name : ";
+        cin >> compname;
+
+        cout << "Enter Customer City : ";
+        cin >> compcity;
+
+        cout << "Enter Customer PhoneNumber : ";
+        cin >> phone;
+
+        stringstream ss;
+        ss << "INSERT INTO customer(compid, compname, compcity, phone) VALUES('" << compid << "','" << compname << "','"<< compcity <<"','"<< phone <<"')";
+
+        string query = ss.str();
+        const char* q = query.c_str();
+        qstate = mysql_query(conn, q);
+        if(qstate == 0){
+            cout <<endl<< "Record Inserted..." << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }else{
+            cout << "Insert Error" << mysql_error(conn) << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }
+    }else{
+        cout << "Connection Error" << endl;
+        cout << "Press B to go back";
+        cin >> dummy;
+    }
+
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: newstock()
+{
+    string dummy;
+    MYSQL* conn;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = 0;
+        int compid;
+        double stockval,target;
+        cout << "Enter Company ID : ";
+        cin >> compid;
+
+        cout << "Enter Stock Value : ";
+        cin >> stockval;
+
+        cout << "Enter Target : ";
+        cin >> target;
+
+        stringstream ss;
+        ss << "INSERT INTO stock(compid, stockval, target) VALUES('" << compid << "','" << stockval << "','"<< target <<"')";
+
+        string query = ss.str();
+        const char* q = query.c_str();
+        qstate = mysql_query(conn, q);
+        if(qstate == 0){
+            cout <<endl<< "Record Inserted..." << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }else{
+            cout << "Insert Error" << mysql_error(conn) << endl;
+            cout << "Press B to go back";
+            cin >> dummy;
+        }
+    }else{
+        cout << "Connection Error" << endl;
+        cout << "Press B to go back";
+        cin >> dummy;
+    }
+
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: delcustomer()
+{
+    string dummy;
+    MYSQL* conn;
+    MYSQL* conn2;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+
+    conn2 = mysql_init(0);
+    conn2 = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);;
+
+    if(conn){
+
+        int id;;
+        int other;
+        cout << "Enter Customer ID : ";
+        cin >> id;
+        int qstate1 = 0;
+
+        stringstream ss1;
+        ss1 << "DELETE FROM customer  WHERE Id = '" << id << "'";
+
+        string query1 = ss1.str();
+
+        const char* q1 = query1.c_str();
+        qstate1 = mysql_query(conn2, q1);
+        if(qstate1 == 0){
+            cout << "Record Deleted..." << endl;
+        }else{
+            cout << "Deletion Error" << mysql_error(conn) << endl;
+        }
+
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+    loop2: customer();
+    goto loop2;
+    system("pause");
+    system("cls");
+
+}
+
+void wholesale :: deltransaction()
+{
+    string dummy;
+    MYSQL* conn;
+    MYSQL* conn2;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+
+    conn2 = mysql_init(0);
+    conn2 = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);;
+
+    if(conn){
+
+        int id;
+        int other;
+        cout << "Enter Customer ID : ";
+        cin >> id;
+        int qstate1 = 0;
+
+        stringstream ss1;
+        ss1 << "DELETE FROM transaction  WHERE (Id = '" << id << "') && (balance = 0)";
+
+        string query1 = ss1.str();
+
+        const char* q1 = query1.c_str();
+        qstate1 = mysql_query(conn2, q1);
+        if(qstate1 == 0){
+            cout << "Record Deleted..." << endl;
+        }else{
+            cout << "Deletion Error" << mysql_error(conn) << endl;
+        }
+
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+    system("pause");
+    system("cls");
+}
+
+void wholesale:: delcompany()
+{
+    string dummy;
+    MYSQL* conn;
+    MYSQL* conn2;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+
+    conn2 = mysql_init(0);
+    conn2 = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);;
+
+    if(conn){
+
+        int id;
+        cout << "Enter Company ID : ";
+        cin >> id;
+        int qstate1 = 0;
+
+        stringstream ss1;
+        ss1 << "DELETE FROM company WHERE Id = '" << id << "'";
+
+        string query1 = ss1.str();
+
+        const char* q1 = query1.c_str();
+        qstate1 = mysql_query(conn2, q1);
+        if(qstate1 == 0){
+            cout << "Record Deleted..." << endl;
+        }else{
+            cout << "Deletion Error" << mysql_error(conn) << endl;
+        }
+
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: upstock()
+{
+	string dummy;
+    MYSQL* conn;
+    MYSQL* conn2;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+
+    conn2 = mysql_init(0);
+    conn2 = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);;
+
+    if(conn){
+
+        int id;
+        double target;
+        cout << "Enter ID: ";
+        cin >> id;
+        cout << "Enter Target: ";
+        cin >> target;
+
+
+        int qstate1 = 0;
+
+        stringstream ss1;
+        ss1 << "UPDATE stock SET target=" << target << " WHERE compid = '" << id << "'";
+
+        string query1 = ss1.str();
+
+        const char* q1 = query1.c_str();
+        qstate1 = mysql_query(conn2, q1);
+        if(qstate1 == 0){
+            cout << "Record Updated..." << endl;
+        }else{
+            cout << "Insert Error" << mysql_error(conn) << endl;
+        }
+
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+    loop2: stock();
+    goto loop2;
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: uptrans()
+{
+	string dummy;
+    MYSQL* conn;
+    MYSQL* conn2;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+
+    conn2 = mysql_init(0);
+    conn2 = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);;
+
+    if(conn){
+
+        int id;
+        double credit,debit,balance;
+        cout << "Enter ID: ";
+        cin >> id;
+        cout << "Enter Credit: ";
+        cin >> credit;
+	cout<<"Enter debit:";
+	cin>> debit;
+	balance=credit -debit;
+
+        int qstate1 = 0;
+
+        stringstream ss1;
+        ss1 << "UPDATE transaction SET credit='"<< credit <<"',debit='" << debit << "',balance='" << balance << "' WHERE cid = '" << id << "'";
+
+        string query1 = ss1.str();
+
+        const char* q1 = query1.c_str();
+        qstate1 = mysql_query(conn2, q1);
+        if(qstate1 == 0){
+            cout << "Record Updated..." << endl;
+        }else{
+            cout << "Insert Error" << mysql_error(conn) << endl;
+        }
+
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+    loop2: transaction();
+    goto loop2;
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: balance()
+{
+MYSQL* conn;
+     	string dummy;
+   	MYSQL_ROW row;
+   	MYSQL_RES* res;
+   	conn = mysql_init(0);
+   	conn = mysql_real_connect(conn,"localhost","admin_anil","admin","wholesale",0,NULL,0);
+		if(conn){
+        int qstate = mysql_query(conn, "SELECT  cid,cname,balance FROM customer natural join transaction ");
+        cout<<" CID \t | \t Name \t | \t Balance \t |"<<endl;
+        if(!qstate){
+            res = mysql_store_result(conn);
+
+            while(row = mysql_fetch_row(res)){
+                cout << row[0] <<"\t | \t"<<row[1] <<"\t | \t"<<row[2] <<"\t\t | \t"<<endl << endl;
+             }
+        }
+    }
+ cout << "Press B to go back";
+    cin >> dummy;
+    loop3: admin();
+    goto loop3;
+    system("pause");
+    system("cls");
+}
+
+void wholesale ::workerfun()
+{
+    int age;
+	string dummy;
+    MYSQL* conn;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = 0;
+        cout << "Enter Age limit : ";
+        cin >> age;
+
+        stringstream ss;
+        ss << "select wname from worker  WHERE age < = '" << age << "'";
+
+        string query = ss.str();
+
+        const char* q = query.c_str();
+        qstate = mysql_query(conn, q);
+        if(!qstate){
+            res = mysql_store_result(conn);
+
+            while(row = mysql_fetch_row(res)){
+                cout <<"\t | \t" << row[0] <<"\t | \t"  << endl << endl;
+             }
+        }
+    }
+
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: companyfun()
+{
+	int a;
+ cout<<" press 1 to highest target valued company "<<endl;
+	cout<<" press 2 to least stock valued company"<<endl;
+	cout<<" press 3 to exit "<<endl;
+	cin>>a;
+	switch(a)
+	{
+		case 1: funtar();
+			break;
+		case 2: funleast();
+			break;
+		case 3: exit(0);
+			break;
+		default: cout<<" ENTER THE RIGHT choice";
+			break;
+	}
+}
+
+void wholesale :: funtar()
+{
+	string dummy;
+    MYSQL* conn;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = mysql_query(conn, "SELECT compname,max(target) FROM company natural join stock");
+        if(!qstate){
+            res = mysql_store_result(conn);
+
+            while(row = mysql_fetch_row(res)){
+                cout << row[0] <<"="<< row[1] <<endl << endl;
+             }
+        }
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+    loop4: admin();
+    goto loop4;
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: funleast()
+{
+	string dummy;
+    MYSQL* conn;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = mysql_query(conn, "SELECT compname,min(stockval) FROM company natural join stock");
+        if(!qstate){
+            res = mysql_store_result(conn);
+
+            while(row = mysql_fetch_row(res)){
+                cout << row[0] <<"="<< row[1] <<endl << endl;
+             }
+        }
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+    loop4: admin();
+    goto loop4;
+    system("pause");
+    system("cls");
+}
+
+void wholesale :: hightrans()
+{
+	string dummy;
+    MYSQL* conn;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+    if(conn){
+        int qstate = mysql_query(conn, "SELECT cname,max(balance) FROM customer natural join transaction");
+        if(!qstate){
+            res = mysql_store_result(conn);
+
+            while(row = mysql_fetch_row(res)){
+                cout << row[0] <<"="<< row[1] <<endl << endl;
+             }
+        }
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+    loop4: admin();
+    goto loop4;
+    system("pause");
+    system("cls");
+
+}
