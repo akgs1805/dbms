@@ -20,7 +20,6 @@ class wholesale
 			void stock();
 			void newtransaction();
 			void deltransaction();
-			void uptransaction();
 			void uptrans();
 			void balance();
 			void workerfun();
@@ -89,7 +88,7 @@ int wholesale:: admin()
 						break;
 			case 5:stock();
 						break;
-            		case 6:exit(0);
+            		case 6:entry();
 						break;
 			default : cout<<"enter correct choice";
 						break;
@@ -107,7 +106,7 @@ int wholesale:: manager()
 	cout<<" press 2 to retrieve all the customer names with their balances"<<endl;
 	cout<<" press 3 to retrieve worker details functions"<<endl;
 	cout<<" press 4 to retrieve company record functions"<<endl;
-	cout<<" press 5 to get highest transaction by the customer with their details "<<endl;
+	cout<<" press 5 to get highest balance in the transaction "<<endl;
 	cout<<" press 6 to exit"<<endl;
 	cout<<"*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&**&*&*&*&*&*&*&*&*&*&*&*&**&*&*&**&*&*&*&*&*&*&*&"<<endl;
 	cout<<" Enter the Choice: ";
@@ -115,7 +114,7 @@ int wholesale:: manager()
 	cout<<endl<<endl;
 	switch(ch)
         {
-			case 1:uptransaction();
+			case 1:uptrans();
 						break;
 			case 2:balance();
 						break;
@@ -162,7 +161,7 @@ void wholesale :: worker()
 {
 	int ch;
     cout<<endl<<endl;
-	cout<< "Customer Table"<<endl;
+	cout<< "workerr Table"<<endl;
 	cout<<" press 1 to enter the new worker details"<<endl;
 	cout<<" press 2 to delete the worker details"<<endl;
 	cout<<" press 3 to exit back"<<endl;
@@ -183,11 +182,36 @@ void wholesale :: worker()
 	}
 }
 
+void wholesale :: transaction()
+{
+	int ch;
+    cout<<endl<<endl;
+	cout<< "transaction Table"<<endl;
+	cout<<" press 1 to enter the new transaction details"<<endl;
+	cout<<" press 2 to delete the transaction details"<<endl;
+	cout<<" press 3 to exit back"<<endl;
+	cout<<" Enter the Choice: ";
+	cin>>ch;
+	cout<<endl<<endl;
+	switch(ch)
+        {
+			case 1:newtransaction();
+						break;
+			case 2:deltransaction();
+						break;
+			case 3: goto loop;
+                    loop: admin();
+						break;
+			default : cout<<"enter correct choice";
+						break;
+	}
+}
+
 void  wholesale :: company()
 {
 	int ch;
     cout<<endl<<endl;
-	cout<< "Customer Table"<<endl;
+	cout<< "CompanyTable"<<endl;
 	cout<<" press 1 to enter the new company details"<<endl;
 	cout<<" press 2 to delete the company details"<<endl;
 	cout<<" press 3 to exit back"<<endl;
@@ -212,7 +236,7 @@ void  wholesale :: stock()
 {
 	int ch;
     cout<<endl<<endl;
-	cout<< "Customer Table"<<endl;
+	cout<< "stock Table"<<endl;
 	cout<<" press 1 to enter the new company stock details"<<endl;
 	cout<<" press 2 to update the company stock details"<<endl;
 	cout<<" press 3 to exit back"<<endl;
@@ -276,7 +300,8 @@ void wholesale :: newcustomer()
         cout << "Press B to go back";
         cin >> dummy;
     }
-
+    loop3: customer();
+    goto loop3;
     system("pause");
     system("cls");
 }
@@ -291,7 +316,7 @@ void wholesale :: newtransaction()
         int qstate = 0;
         string name,city;
         int cid,billno;
-        double credit,debit;
+        double credit,debit,balanceval;
         cout << "Enter Customer ID : ";
         cin >> cid;
 
@@ -303,10 +328,10 @@ void wholesale :: newtransaction()
 
         cout << "Enter Debit Amount : ";
         cin >> debit;
-
+        balanceval=credit-debit;
 
         stringstream ss;
-        ss << "INSERT INTO customer(cid,billno, credit, debit) VALUES('" << cid << "','" << billno << "','" << credit << "','"<< debit <<"')";
+        ss << "INSERT INTO transaction(cid,billno, credit, debit,balance) VALUES('" << cid << "','" << billno << "','" << credit << "','"<< debit <<"','"<< balanceval<<"')";
 
         string query = ss.str();
         const char* q = query.c_str();
@@ -325,7 +350,8 @@ void wholesale :: newtransaction()
         cout << "Press B to go back";
         cin >> dummy;
     }
-
+    transloop: transaction();
+    goto transloop;
     system("pause");
     system("cls");
 }
@@ -354,7 +380,7 @@ void  wholesale :: newworker()
         cin >> age;
 
         stringstream ss;
-        ss << "INSERT INTO customer(wid, wname, salary, age) VALUES('" << wid << "','" << wname << "','"<< salary <<"','"<< age <<"')";
+        ss << "INSERT INTO worker(wid, wname, salary, age) VALUES('" << wid << "','" << wname << "','"<< salary <<"','"<< age <<"')";
 
         string query = ss.str();
         const char* q = query.c_str();
@@ -373,7 +399,8 @@ void  wholesale :: newworker()
         cout << "Press B to go back";
         cin >> dummy;
     }
-
+    loop31:worker();
+    goto loop31;
     system("pause");
     system("cls");
 }
@@ -402,7 +429,7 @@ void  wholesale :: newcompany()
         cin >> phone;
 
         stringstream ss;
-        ss << "INSERT INTO customer(compid, compname, compcity, phone) VALUES('" << compid << "','" << compname << "','"<< compcity <<"','"<< phone <<"')";
+        ss << "INSERT INTO company(compid, compname, compcity, phone) VALUES('" << compid << "','" << compname << "','"<< compcity <<"','"<< phone <<"')";
 
         string query = ss.str();
         const char* q = query.c_str();
@@ -421,6 +448,9 @@ void  wholesale :: newcompany()
         cout << "Press B to go back";
         cin >> dummy;
     }
+
+    loop34:company();
+    goto loop34;
 
     system("pause");
     system("cls");
@@ -466,6 +496,8 @@ void wholesale :: newstock()
         cin >> dummy;
     }
 
+    loop35:stock();
+    goto loop35;
     system("pause");
     system("cls");
 }
@@ -492,7 +524,7 @@ void wholesale :: delcustomer()
         int qstate1 = 0;
 
         stringstream ss1;
-        ss1 << "DELETE FROM customer  WHERE Id = '" << id << "'";
+        ss1 << "DELETE FROM customer  WHERE cid = '" << id << "'";
 
         string query1 = ss1.str();
 
@@ -537,7 +569,7 @@ void wholesale :: deltransaction()
         int qstate1 = 0;
 
         stringstream ss1;
-        ss1 << "DELETE FROM transaction  WHERE (Id = '" << id << "') && (balance = 0)";
+        ss1 << "DELETE FROM transaction  WHERE (cid = '" << id << "') && (balance = 0)";
 
         string query1 = ss1.str();
 
@@ -553,6 +585,8 @@ void wholesale :: deltransaction()
 
     cout << "Press B to go back";
     cin >> dummy;
+    loop30: transaction();
+    goto loop30;
     system("pause");
     system("cls");
 }
@@ -578,7 +612,7 @@ void wholesale:: delcompany()
         int qstate1 = 0;
 
         stringstream ss1;
-        ss1 << "DELETE FROM company WHERE Id = '" << id << "'";
+        ss1 << "DELETE FROM company WHERE compid = '" << id << "'";
 
         string query1 = ss1.str();
 
@@ -594,10 +628,55 @@ void wholesale:: delcompany()
 
     cout << "Press B to go back";
     cin >> dummy;
+
+    loop33:company();
+    goto loop33;
     system("pause");
     system("cls");
 }
 
+void wholesale:: delworker()
+{
+    string dummy;
+    MYSQL* conn;
+    MYSQL* conn2;
+    MYSQL_ROW row;
+    MYSQL_RES* res;
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
+
+    conn2 = mysql_init(0);
+    conn2 = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);;
+
+    if(conn){
+
+        int id;
+        cout << "Enter worker ID : ";
+        cin >> id;
+        int qstate1 = 0;
+
+        stringstream ss1;
+        ss1 << "DELETE FROM worker WHERE wid = '" << id << "'";
+
+        string query1 = ss1.str();
+
+        const char* q1 = query1.c_str();
+        qstate1 = mysql_query(conn2, q1);
+        if(qstate1 == 0){
+            cout << "Record Deleted..." << endl;
+        }else{
+            cout << "Deletion Error" << mysql_error(conn) << endl;
+        }
+
+    }
+
+    cout << "Press B to go back";
+    cin >> dummy;
+     loop32:worker();
+    goto loop32;
+    system("pause");
+    system("cls");
+}
 void wholesale :: upstock()
 {
 	string dummy;
@@ -614,17 +693,18 @@ void wholesale :: upstock()
     if(conn){
 
         int id;
-        double target;
+        double target,stockval;
         cout << "Enter ID: ";
         cin >> id;
         cout << "Enter Target: ";
         cin >> target;
-
+        cout << "Enter stock: ";
+        cin >> stockval;
 
         int qstate1 = 0;
 
         stringstream ss1;
-        ss1 << "UPDATE stock SET target=" << target << " WHERE compid = '" << id << "'";
+        ss1 << "UPDATE stock SET target=" << target << ",stockval=" << stockval << " WHERE compid = '" << id << "'";
 
         string query1 = ss1.str();
 
@@ -690,7 +770,7 @@ void wholesale :: uptrans()
 
     cout << "Press B to go back";
     cin >> dummy;
-    loop2: transaction();
+    loop2: manager();
     goto loop2;
     system("pause");
     system("cls");
@@ -717,7 +797,7 @@ MYSQL* conn;
     }
  cout << "Press B to go back";
     cin >> dummy;
-    loop3: admin();
+    loop3: manager();
     goto loop3;
     system("pause");
     system("cls");
@@ -738,8 +818,9 @@ void wholesale ::workerfun()
         cin >> age;
 
         stringstream ss;
-        ss << "select wname from worker  WHERE age < = '" << age << "'";
-
+        ss << "select wname from worker  WHERE age <= '" << age << "'";
+        cout<<endl<<endl;
+        cout<<" | \t WORKER Name \t |"<<endl;
         string query = ss.str();
 
         const char* q = query.c_str();
@@ -748,11 +829,13 @@ void wholesale ::workerfun()
             res = mysql_store_result(conn);
 
             while(row = mysql_fetch_row(res)){
-                cout <<"\t | \t" << row[0] <<"\t | \t"  << endl << endl;
+                cout <<"| \t" << row[0] <<"\t | "  << endl << endl;
              }
         }
     }
 
+    loop36: manager();
+    goto loop36;
     system("pause");
     system("cls");
 }
@@ -760,8 +843,8 @@ void wholesale ::workerfun()
 void wholesale :: companyfun()
 {
 	int a;
- cout<<" press 1 to highest target valued company "<<endl;
-	cout<<" press 2 to least stock valued company"<<endl;
+ cout<<" press 1 to  show targets of all companies "<<endl;
+	cout<<" press 2 to show stock of all companies"<<endl;
 	cout<<" press 3 to exit "<<endl;
 	cin>>a;
 	switch(a)
@@ -786,19 +869,20 @@ void wholesale :: funtar()
     conn = mysql_init(0);
     conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
     if(conn){
-        int qstate = mysql_query(conn, "SELECT compname,max(target) FROM company natural join stock");
+        int qstate = mysql_query(conn, "SELECT compname,target FROM company natural join stock");
+        cout<<" | \t compName \t | \t target \t |"<<endl;
         if(!qstate){
             res = mysql_store_result(conn);
 
             while(row = mysql_fetch_row(res)){
-                cout << row[0] <<"="<< row[1] <<endl << endl;
+                cout <<" | \t"<< row[0] <<"\t | \t"<< row[1]<< " | \t"<<endl << endl;
              }
         }
     }
 
     cout << "Press B to go back";
     cin >> dummy;
-    loop4: admin();
+    loop4: manager();
     goto loop4;
     system("pause");
     system("cls");
@@ -813,19 +897,20 @@ void wholesale :: funleast()
     conn = mysql_init(0);
     conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
     if(conn){
-        int qstate = mysql_query(conn, "SELECT compname,min(stockval) FROM company natural join stock");
+        int qstate = mysql_query(conn, "SELECT compname,stockval FROM company natural join stock");
+        cout<<" | \t compName \t | \t stockval \t |"<<endl;
         if(!qstate){
             res = mysql_store_result(conn);
 
             while(row = mysql_fetch_row(res)){
-                cout << row[0] <<"="<< row[1] <<endl << endl;
+                cout <<" | \t"<< row[0] <<"\t\t | \t"<< row[1]<< " | \t"<<endl << endl;
              }
         }
     }
 
     cout << "Press B to go back";
     cin >> dummy;
-    loop4: admin();
+    loop4: manager();
     goto loop4;
     system("pause");
     system("cls");
@@ -840,12 +925,13 @@ void wholesale :: hightrans()
     conn = mysql_init(0);
     conn = mysql_real_connect(conn, "localhost", "admin_anil", "admin", "wholesale", 0, NULL, 0);
     if(conn){
-        int qstate = mysql_query(conn, "SELECT cname,max(balance) FROM customer natural join transaction");
+        int qstate = mysql_query(conn, "SELECT max(balance) FROM  transaction");
+        cout<<"|\t max balance \t|";
         if(!qstate){
             res = mysql_store_result(conn);
 
             while(row = mysql_fetch_row(res)){
-                cout << row[0] <<"="<< row[1] <<endl << endl;
+                cout <<"|\t "<< row[0] <<"\t|" <<endl << endl;
              }
         }
     }
@@ -856,5 +942,11 @@ void wholesale :: hightrans()
     goto loop4;
     system("pause");
     system("cls");
+}
 
+int main()
+{
+    wholesale w;
+    w.entry();
+    return 0;
 }
