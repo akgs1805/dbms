@@ -576,7 +576,7 @@ void wholesale :: deltransaction()
         const char* q1 = query1.c_str();
         qstate1 = mysql_query(conn2, q1);
         if(qstate1 == 0){
-            cout << "Record Deleted..." << endl;
+            cout << "Records modified based on codition.." << endl;
         }else{
             cout << "Deletion Error" << mysql_error(conn) << endl;
         }
